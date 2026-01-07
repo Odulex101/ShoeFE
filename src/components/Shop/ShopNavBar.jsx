@@ -1,12 +1,12 @@
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useBestSeller } from "../../context/BestSellerContext";
+// import { useBestSeller } from "../../context/BestSellerContext";
 import { useCart } from "../../context/CartContext";
 import CartDrawer from "../cart/CartDrawer";
 
 const ShopNavBar = () => {
     const navigate = useNavigate();
-    const { setShowBestSellers } = useBestSeller();
+    // const { setShowBestSellers } = useBestSeller();
     const { cart, isCartOpen, setIsCartOpen } = useCart();
 
     const cartCount = (cart || []).reduce(
