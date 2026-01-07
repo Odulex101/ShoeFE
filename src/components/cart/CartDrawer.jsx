@@ -9,7 +9,6 @@ const CartDrawer = () => {
         isCartOpen,
         setIsCartOpen,
         totalPrice,
-        conversionRate,
     } = useCart();
 
     if (!isCartOpen) return null;
@@ -42,7 +41,7 @@ const CartDrawer = () => {
                             <h6 className="mb-1">{item.name}</h6>
 
                             <p className="mb-1 text-muted">
-                                ₦{(item.price * conversionRate).toLocaleString()}
+                                ₦{(item.price).toLocaleString()}
                             </p>
 
                             <div className="d-flex align-items-center mb-2">

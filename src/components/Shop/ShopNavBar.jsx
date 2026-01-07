@@ -1,4 +1,4 @@
-import { FaHeart, FaShoppingBag } from "react-icons/fa";
+import {  FaShoppingBag } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 // import { useBestSeller } from "../../context/BestSellerContext";
 import { useCart } from "../../context/CartContext";
@@ -54,7 +54,6 @@ const ShopNavBar = () => {
 
                     {/* Icons */}
                     <div className="d-flex gap-3 align-items-center">
-                        <FaHeart />
 
                         <div
                             role="button"

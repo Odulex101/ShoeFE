@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "../../index.css";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5000/api/auth";
 
-const LoginModal = ({ close, navigate }) => {
+const LoginModal = ({ close}) => {
     const [showShop, setShowShop] = useState(false);
     const [step, setStep] = useState("email"); // email | code
     const [email, setEmail] = useState("");
@@ -11,6 +12,8 @@ const LoginModal = ({ close, navigate }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [defaultStep, setDefaultStep] = useState("email");
+    const navigate = useNavigate();
+
 
     /* =============================== CHECK EMAIL / LOGIN ================================ */
     const handleContinue = async () => {
@@ -26,11 +29,16 @@ const LoginModal = ({ close, navigate }) => {
                 body: JSON.stringify({ email }),
             });
 
+            
+            
             const data = await res.json();
+         
             if (!res.ok) throw new Error(data.message || "Something went wrong");
 
             if (data.exists) {
                 localStorage.setItem("token", data.token);
+                localStorage.setItem('userEmail', email);
+                navigate("/shop");
                 close();
             } else {
                 setError("Email not registered. Please sign in with Shop.");
@@ -91,7 +99,9 @@ const LoginModal = ({ close, navigate }) => {
                         body: JSON.stringify({ email }),
                     });
 
+                    
                     const data = await res.json();
+                    
                     if (!res.ok) throw new Error(data.message);
 
                     if (data.exists) {

@@ -5,21 +5,23 @@ import SearchResults from "./SearchResults";
 import { useSearch } from "../context/SearchContext";
 import ProfileDropdown from "./ProfileDropdown";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // ✅
 
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false);
     const { searchTerm, setSearchTerm, showResults, setShowResults } = useSearch();
+    const { isAuthenticated } = useAuth(); // ✅
     const navigate = useNavigate();
 
-    const isLoggedIn = !!localStorage.getItem("token");
-
-    if (isLoggedIn) {
+    if (isAuthenticated) {
         return (
             <div className="bg-dark text-white py-2 sticky-top">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center gap-2">
-                        <img src="/logo.png" alt="Temorah Designs" style={{ height: "30px" }} />
-                        <span className="fs-5 fw-semibold">TEMORAH <span className="text-info">DESIGNS</span></span>
+                        <img src="./logo.png" alt="Temorah Designs" style={{ height: "30px" }} />
+                        <span className="fs-5 fw-semibold">
+                            TEMORAH <span className="text-info">DESIGNS</span>
+                        </span>
                     </div>
                     <ProfileDropdown />
                 </div>
@@ -29,6 +31,7 @@ const Header = () => {
 
     return (
         <>
+            {/* PUBLIC HEADER */}
             <div className="sticky-top header-wrapper">
                 <div className="border-bottom bg-white">
                     <div className="container-fluid py-2 d-flex align-items-center justify-content-between flex-wrap gap-2">
@@ -71,13 +74,13 @@ const Header = () => {
                 <div className="bg-dark text-white">
                     <div className="container-fluid py-3 d-flex align-items-center flex-wrap">
                         <ul className="list-unstyled d-flex gap-4 mb-0">
-                            <li>Shop</li>
-                            <li>Customer Care</li>
-                            <li>Stores</li>
+                            <li onClick={() => navigate("/shop")}>Shop</li>
+                            <li onClick={() => navigate("/customer-care")}>Customer Care</li>
+                            <li onClick={() => navigate("/stores")}>Stores</li>
                         </ul>
 
                         <div className="mx-auto d-flex align-items-center gap-2 brand-logo">
-                            <img src="/logo.png" alt="Temorah Designs" className="brand-logo-img" />
+                            <img src="./logo.png" alt="Temorah Designs" className="brand-logo-img" />
                             <span className="fs-4 fw-semibold text-light">
                                 TEMORAH <span className="text-info">DESIGNS</span>
                             </span>
@@ -102,8 +105,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-
-

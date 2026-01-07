@@ -96,7 +96,7 @@ export const CartProvider = ({ children }) => {
 
     // TOTAL PRICE
     const totalPrice = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity * conversionRate,
+        (sum, item) => sum + item.price * item.quantity,
         0
     );
 
@@ -110,7 +110,7 @@ export const CartProvider = ({ children }) => {
                 isCartOpen,
                 setIsCartOpen,
                 totalPrice,
-                conversionRate,
+                // conversionRate,
             }}
         >
             {children}

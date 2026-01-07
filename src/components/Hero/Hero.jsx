@@ -55,7 +55,7 @@ const Hero = () => {
                 }}
             >
                 <video
-                    src="public/videos/My-Video.mp4" 
+                    src="./videos/My-Video.mp4" 
                     autoPlay
                     muted
                     loop

@@ -5,13 +5,11 @@ const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(() =>
-        localStorage.getItem("token")
-    );
+    const [token, setToken] = useState(() => localStorage.getItem("token"));
 
     const login = (newToken) => {
         localStorage.setItem("token", newToken);
-        setToken(newToken); // 🔑 triggers re-render
+        setToken(newToken); // 🔥 triggers re-render
     };
 
     const logout = () => {
@@ -20,18 +18,15 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ token, login, logout }}>
+        <AuthContext.Provider
+            value={{
+                token,
+                isAuthenticated: !!token, 
+                login,
+                logout
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
 };
-
-
-
-
-
-
-
-
-
-

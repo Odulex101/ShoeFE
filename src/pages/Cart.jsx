@@ -45,7 +45,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-    const { cart, conversionRate } = useCart();
+    const { cart} = useCart();
     const { token } = useAuth();
     const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ const Cart = () => {
 
     const total = cart.reduce(
         (sum, item) =>
-            sum + item.price * item.quantity * conversionRate,
+            sum + item.price * item.quantity,
         0
     );
 
@@ -87,7 +87,7 @@ const Cart = () => {
                     </div>
 
                     <strong>
-                        ₦{(item.price * item.quantity * conversionRate).toLocaleString()}
+                        ₦{(item.price * item.quantity).toLocaleString()}
                     </strong>
                 </div>
             ))}
