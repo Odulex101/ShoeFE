@@ -9,7 +9,7 @@ const DashboardHeader = () => {
             <div className="container-fluid py-3 d-flex justify-content-between align-items-center">
                 {/* LEFT */}
                 <div className="d-flex align-items-center gap-4">
-                    <img src="/logo.png" alt="TEMORAH" style={{ height: 28 }} />
+                    <img src="./images/logo.png" alt="TEMORAH" style={{ height: 28 }} />
 
                     <Link
                         to="/shop"

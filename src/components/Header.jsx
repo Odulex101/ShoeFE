@@ -18,7 +18,7 @@ const Header = () => {
             <div className="bg-dark text-white py-2 sticky-top">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center gap-2">
-                        <img src="./logo.png" alt="Temorah Designs" style={{ height: "30px" }} />
+                        <img src="./images/logo.png" alt="Temorah Designs" style={{ height: "30px" }} />
                         <span className="fs-5 fw-semibold">
                             TEMORAH <span className="text-info">DESIGNS</span>
                         </span>
@@ -80,7 +80,7 @@ const Header = () => {
                         </ul>
 
                         <div className="mx-auto d-flex align-items-center gap-2 brand-logo">
-                            <img src="./logo.png" alt="Temorah Designs" className="brand-logo-img" />
+                            <img src="./images/logo.png" alt="Temorah Designs" className="brand-logo-img" />
                             <span className="fs-4 fw-semibold text-light">
                                 TEMORAH <span className="text-info">DESIGNS</span>
                             </span>
