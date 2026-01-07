@@ -1,5 +1,5 @@
 import { useCart } from "../../context/CartContext";
-import "./Cart.css";
+import "./cart.css";
 
 const CartDrawer = () => {
     const {
