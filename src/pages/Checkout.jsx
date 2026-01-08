@@ -35,7 +35,7 @@ const Checkout = () => {
     const confirmOrder = async () => {
         try {
             await axios.post(
-                "http://localhost:5000/api/orders",
+                "https://shoe-be.vercel.app/api/orders",
                 {
                     delivery,
                     paymentMethod: "Pay on Delivery (Bank Transfer)",

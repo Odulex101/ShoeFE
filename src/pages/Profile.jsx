@@ -8,7 +8,7 @@ const Profile = () => {
     });
 
     useEffect(() => {
-        fetch("http://localhost:5002/api/users/me", {
+        fetch("https://shoe-be.vercel.app/api/users/me", {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -25,7 +25,7 @@ const Profile = () => {
     }, []);
 
     const saveProfile = async () => {
-        await fetch("http://localhost:5002/api/users/me", {
+        await fetch("https://shoe-be.vercel.app/api/users/me", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

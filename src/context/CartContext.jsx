@@ -15,7 +15,7 @@
 //         if (!token) return;
 
 //         axios
-//             .get("http://localhost:5000/api/cart", {
+//             .get("https://shoe-be.vercel.app/api/cart", {
 //                 headers: { Authorization: `Bearer ${token}` },
 //             })
 //             .then(res => setCart(res.data.items || []))
@@ -44,7 +44,7 @@
 
 //         try {
 //             const res = await axios.post(
-//                 "http://localhost:5000/api/cart/add",
+//                 "https://shoe-be.vercel.app/api/cart/add",
 //                 {
 //                     product: {
 //                         productId: Number(product.id),
@@ -69,7 +69,7 @@
 
 //         try {
 //             const res = await axios.delete(
-//                 `http://localhost:5000/api/cart/${productId}`,
+//                 `https://shoe-be.vercel.app/api/cart/${productId}`,
 //                 { headers: { Authorization: `Bearer ${token}` } }
 //             );
 //             setCart(res.data.items || []);
@@ -84,7 +84,7 @@
 
 //         try {
 //             const res = await axios.put(
-//                 "http://localhost:5000/api/cart/update",
+//                 "https://shoe-be.vercel.app/api/cart/update",
 //                 { productId, quantity },
 //                 { headers: { Authorization: `Bearer ${token}` } }
 //             );
@@ -136,7 +136,7 @@ export const CartProvider = ({ children }) => {
         if (!token) return;
 
         axios
-            .get("http://localhost:5000/api/cart", {
+            .get("https://shoe-be.vercel.app/api/cart", {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then(res => setCart(res.data.items || res.data || []))
@@ -164,7 +164,7 @@ export const CartProvider = ({ children }) => {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/cart/add",
+                "https://shoe-be.vercel.app/api/cart/add",
                 {
                     product: {
                         productId: Number(product.id),
@@ -189,7 +189,7 @@ export const CartProvider = ({ children }) => {
 
         try {
             const res = await axios.delete(
-                `http://localhost:5000/api/cart/${productId}`,
+                `https://shoe-be.vercel.app/api/cart/${productId}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setCart(res.data.items || res.data || []);
@@ -204,7 +204,7 @@ export const CartProvider = ({ children }) => {
 
         try {
             const res = await axios.put(
-                "http://localhost:5000/api/cart/update",
+                "https://shoe-be.vercel.app/api/cart/update",
                 { productId, quantity },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

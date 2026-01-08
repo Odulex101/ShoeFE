@@ -9,7 +9,7 @@ const Orders = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/orders", {
+            .get("https://shoe-be.vercel.app/api/orders", {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then(res => setOrders(res.data))

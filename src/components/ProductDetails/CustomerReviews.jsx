@@ -79,7 +79,7 @@ const CustomerReviews = ({ productId }) => {
 
     /* FETCH REVIEWS */
     useEffect(() => {
-        fetch(`http://localhost:5000/api/reviews/${productId}`)
+        fetch(`https://shoe-be.vercel.app/api/reviews/${productId}`)
             .then(res => res.json())
             .then(data => setReviews(data));
     }, [productId]);
@@ -95,7 +95,7 @@ const CustomerReviews = ({ productId }) => {
     const submitReview = async () => {
         const imageUrls = preview;
 
-        const res = await fetch("http://localhost:5000/api/reviews", {
+        const res = await fetch("https://shoe-be.vercel.app/api/reviews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

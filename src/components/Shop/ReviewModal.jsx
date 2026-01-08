@@ -55,13 +55,13 @@ const ReviewModal = ({ productId }) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/reviews/${productId}`)
+            .get(`https://shoe-be.vercel.app/api/reviews/${productId}`)
             .then(res => setReviews(res.data));
     }, [productId]);
 
     const submitReview = async () => {
         const res = await axios.post(
-            "http://localhost:5000/api/reviews",
+            "https://shoe-be.vercel.app/api/reviews",
             { productId, text }
         );
 

@@ -2,7 +2,7 @@
 // import "../../index.css";
 // import { useNavigate } from "react-router-dom";
 
-// const API_URL = "http://localhost:5000/api/auth";
+// const API_URL = "https://shoe-be.vercel.app/api/auth";
 
 // const LoginModal = ({ close}) => {
 //     const [showShop, setShowShop] = useState(false);
@@ -304,7 +304,7 @@ import "../../index.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // ✅ added
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://shoe-be.vercel.app/api/auth";
 
 const LoginModal = ({ close }) => {
     const [showShop, setShowShop] = useState(false);

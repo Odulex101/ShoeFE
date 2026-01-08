@@ -21,7 +21,7 @@ const CustomerCare = () => {
         e.preventDefault();
 
         try {
-            await axios.post("http://localhost:5000/api/customer-care", form);
+            await axios.post("https://shoe-be.vercel.app/api/customer-care", form);
             setStatus("Message sent successfully!");
         } catch (err) {
             console.log(err);

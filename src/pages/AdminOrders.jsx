@@ -8,7 +8,7 @@ const AdminOrders = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/admin/orders", {
+            .get("https://shoe-be.vercel.app/api/admin/orders", {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then(res => setOrders(res.data));
