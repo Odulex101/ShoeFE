@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
 import products from "../../data/products";
 import CustomerReviews from "./CustomerReviews";
 import "./ProductDetails.css";
@@ -9,6 +10,7 @@ const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart } = useCart();
+    const { isAuthenticated } = useAuth();
 
     const product = products.find(p => p.id === Number(id));
 
@@ -31,6 +33,14 @@ const ProductDetails = () => {
             quantity: qty,
             selectedSize: size
         });
+    };
+
+    const handleCheckout = () => {
+        if (!isAuthenticated) {
+            navigate("/login");
+        } else {
+            navigate("/checkout");
+        }
     };
 
     return (
@@ -107,6 +117,14 @@ const ProductDetails = () => {
                         onClick={handleAddToCart}
                     >
                         Add to Cart
+                    </button>
+
+                    {/* 🔴 ADDED — CHECKOUT BUTTON */}
+                    <button
+                        className="btn btn-outline-dark w-100 mb-4"
+                        onClick={handleCheckout}
+                    >
+                        Proceed to Checkout
                     </button>
 
                     {/* PRODUCT INFO */}

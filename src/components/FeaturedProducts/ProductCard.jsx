@@ -1,9 +1,17 @@
 import ProductRating from "./ProductRating";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductCard = ({ product }) => {
+    const navigate = useNavigate();
+
+
     return (
-        <div className="product-card">
+        <div
+            className="product-card"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate(`/product/${product.id}`)}
+        >
             <div className="image-wrapper">
                 <span className="badge-ready">{product.badge}</span>
 
