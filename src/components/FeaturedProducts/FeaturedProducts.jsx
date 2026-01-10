@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import "./FeaturedProducts.css";
 
 const products = [
-    { id: 1, name: "Beautiful Quality Black Classy Heel", price: "#21,500", reviews: 165, rating: 5, badge: "READY", images: ["/public/shoes/2a.jpeg"] },
+    { id: 1, name: "Beautiful Quality Black Classy Heel", price: "#21,500", reviews: 165, rating: 5, badge: "READY", images: ["/shoes/2a.jpeg"] },
     { id: 2, name: "Beautiful Quality Gold Classy Heel", price: "#21,500", reviews: 7, rating: 4, badge: "READY", images: ["/shoes/2.jpeg"] },
     { id: 3, name: "Beautiful Quality Loafer for Men", price: "#25,000", reviews: 154, rating: 5, badge: "READY", images: ["/shoes/3.jpg"] },
     { id: 4, name: "Beautiful Quality Footwear", price: "#15,000", reviews: 3, rating: 4, badge: "READY", images: ["/shoes/4.jpeg"] },
