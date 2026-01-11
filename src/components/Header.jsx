@@ -142,10 +142,14 @@ const Header = () => {
                                 style={{ outline: "none", minWidth: "180px" }}
                                 value={searchTerm}
                                 onChange={(e) => {
-                                    setSearchTerm(e.target.value);
-                                    setShowResults(true);
+                                    const value = e.target.value;
+                                    setSearchTerm(value);
+
+                                    // 🔴 CHANGED: hide results when empty
+                                    setShowResults(value.length > 0);
                                 }}
                             />
+
                             {showResults && searchTerm && (
                                 <SearchResults
                                     searchTerm={searchTerm}

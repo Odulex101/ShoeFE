@@ -85,8 +85,8 @@
 
 
 import { useCart } from "../../context/CartContext";
-import { useAuth } from "../../context/AuthContext"; // 🔴 ADDED: import auth
-import { toast } from "react-toastify"; // 🔴 ADDED: import toast
+import { useAuth } from "../../context/AuthContext";
+import { toast } from "react-toastify"; 
 import "./cart.css";
 
 const CartDrawer = () => {

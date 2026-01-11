@@ -54,3 +54,12 @@
 .footer-btn:hover {
     background-color: #c9c6c5;
 }
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.footer-links li:hover {
+    text-decoration: underline;
+}
