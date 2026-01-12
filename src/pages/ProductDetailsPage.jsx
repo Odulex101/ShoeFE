@@ -5,7 +5,6 @@ import ShopNavBar from "../components/Shop/ShopNavBar";
 const ProductDetailsPage = () => {
     return (
         <>
-            <ShopNavBar />
             <ProductDetails />
         </>
     );

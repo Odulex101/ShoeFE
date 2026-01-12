@@ -56,7 +56,6 @@ const Stores = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
 
     );

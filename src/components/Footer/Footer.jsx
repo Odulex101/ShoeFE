@@ -1,10 +1,21 @@
 import React from "react";
 import "./Footer.css";
-import { FaFacebookF, FaTwitter, FaPinterestP, FaTiktok, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaTiktok, FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
     const navigate = useNavigate();
+
+    const socialLinks = {
+        facebook: "https://www.facebook.com/",
+        twitter: "https://twitter.com/",
+        tiktok: "https://www.tiktok.com/",
+        instagram: "https://www.instagram.com/"
+    };
+
+    const openSocial = (url) => {
+        window.open(url, "_blank", "noopener,noreferrer");
+    };
 
     return (
         <footer className="bg-footer text-light pt-5">
@@ -74,22 +85,41 @@ const Footer = () => {
                             >
                                 Shipping Policy
                             </li>
-                            <li>Refund Policy</li>
-                            <li>Accessibility Statement</li>
+                            <li
+                                role="button"
+                                className="cursor-pointer"
+                                onClick={() => navigate("/refund-policy")}
+                            >
+                                Refund Policy
+                            </li>
                         </ul>
                     </div>
 
                     {/* SOCIAL */}
                     <div className="col-12 col-md-4 col-lg-3">
                         <h6 className="text-uppercase fw-semibold mb-3">Stay Connected</h6>
+
+                        {/* 🔴 ADD CLICK HANDLERS ONLY */}
                         <div className="d-flex gap-3 footer-social">
-                            <FaFacebookF />
-                            <FaTwitter />
-                            <FaPinterestP />
-                            <FaTiktok />
-                            <FaInstagram />
+                            <FaFacebookF
+                                role="button"
+                                onClick={() => openSocial(socialLinks.facebook)}
+                            />
+                            <FaTwitter
+                                role="button"
+                                onClick={() => openSocial(socialLinks.twitter)}
+                            />
+                            <FaTiktok
+                                role="button"
+                                onClick={() => openSocial(socialLinks.tiktok)}
+                            />
+                            <FaInstagram
+                                role="button"
+                                onClick={() => openSocial(socialLinks.instagram)}
+                            />
                         </div>
                     </div>
+
 
                     {/* NEWSLETTER */}
                     <div className="col-12 col-lg-3">

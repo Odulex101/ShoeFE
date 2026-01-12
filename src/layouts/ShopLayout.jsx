@@ -31,6 +31,7 @@ const ShopLayout = ({ children }) => {
         location.pathname.startsWith("/terms") ||
         location.pathname.startsWith("/privacy") ||
         location.pathname.startsWith("/shipping-policy");
+    location.pathname.startsWith("/refund-policy")
     /* 🔴 END FIX */
 
     return (

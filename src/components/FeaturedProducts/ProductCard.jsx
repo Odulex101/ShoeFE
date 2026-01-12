@@ -1,35 +1,19 @@
 // import ProductRating from "./ProductRating";
 // import { useNavigate } from "react-router-dom";
-// import { useCart } from "../../context/CartContext";
-
+// import { useCart } from "../../context/CartContext"; // 🔴 ADDED
 
 // const ProductCard = ({ product }) => {
 //     const navigate = useNavigate();
 //     const { addToCart } = useCart(); // 🔴 ADDED
 
-// // 🔴 ADDED: handle add-to-cart directly
-// const handleAddToCart = (e) => {
-//     e.stopPropagation();
-
-//     const priceNumber = Number(product.price.replace(/[^\d]/g, ""));
-
-//     addToCart({
-//         ...product,
-//         price: priceNumber,
-//         quantity: 1,
-//     });
-
-//     setIsCartOpen(true); 
-// };
-
-
 //     return (
-//         <div
-//             className="product-card"
-//             style={{ cursor: "pointer" }}
-//             onClick={() => navigate(`/product/${product.id}`)}
-//         >
-//             <div className="image-wrapper">
+//         <div className="product-card">
+//             {/* IMAGE / NAVIGATION */}
+//             <div
+//                 className="image-wrapper"
+//                 style={{ cursor: "pointer" }}
+//                 onClick={() => navigate(`/product/${product.id}`)}
+//             >
 //                 <span className="badge-ready">{product.badge}</span>
 
 //                 <img
@@ -42,14 +26,10 @@
 //                     {product.images.slice(0, 5).map((img, i) => (
 //                         <img key={i} src={img} alt="thumb" />
 //                     ))}
-//                     {product.images.length > 5 && (
-//                         <span className="thumb-more">
-//                             +{product.images.length - 5}
-//                         </span>
-//                     )}
 //                 </div>
 //             </div>
 
+//             {/* PRODUCT INFO */}
 //             <div className="mt-3">
 //                 <p className="product-name">{product.name}</p>
 //                 <p className="price">{product.price}</p>
@@ -58,14 +38,6 @@
 //                     rating={product.rating}
 //                     reviews={product.reviews}
 //                 />
-
-//                 {/* 🔴 ADDED: ADD TO CART BUTTON */}
-//                 <button
-//                     className="btn btn-dark w-100 mt-2"
-//                     onClick={handleAddToCart}
-//                 >
-//                     Add to Cart
-//                 </button>
 //             </div>
 //         </div>
 //     );
@@ -76,14 +48,15 @@
 
 import ProductRating from "./ProductRating";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context/CartContext"; // 🔴 ADDED
+import { useCart } from "../../context/CartContext";
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
-    const { addToCart } = useCart(); // 🔴 ADDED
+    const { addToCart } = useCart();
 
     return (
-        <div className="product-card">
+        // 🔴 CHANGE: added auto-move class
+        <div className="product-card auto-move">
             {/* IMAGE / NAVIGATION */}
             <div
                 className="image-wrapper"
@@ -120,6 +93,7 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
 
 
 
