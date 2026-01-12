@@ -5,8 +5,7 @@ import Hero from '../components/Hero/Hero'
 const Landing = () => {
   return (
     <div>
-        <Header />
-      <Hero />
+      <Header />
     </div>
   )
 }
