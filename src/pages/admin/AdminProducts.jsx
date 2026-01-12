@@ -71,73 +71,73 @@
 // export default AdminProducts;
 
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useAuth } from "../../context/AuthContext";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useAuth } from "../../context/AuthContext";
 
-const AdminProducts = () => {
-    const { token } = useAuth();
-    const [products, setProducts] = useState([]);
+// const AdminProducts = () => {
+//     const { token } = useAuth();
+//     const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
+//     useEffect(() => {
+//         fetchProducts();
+//     }, []);
 
-    const fetchProducts = async () => {
-        const res = await axios.get(
-            "https://shoe-be.vercel.app/api/admin/products",
-            {
-                headers: { Authorization: `Bearer ${token}` },
-            }
-        );
-        setProducts(res.data);
-    };
+//     const fetchProducts = async () => {
+//         const res = await axios.get(
+//             "https://shoe-be.vercel.app/api/admin/products",
+//             {
+//                 headers: { Authorization: `Bearer ${token}` },
+//             }
+//         );
+//         setProducts(res.data);
+//     };
 
-    const deleteProduct = async (id) => {
-        await axios.delete(
-            `https://shoe-be.vercel.app/api/admin/products/${id}`,
-            {
-                headers: { Authorization: `Bearer ${token}` },
-            }
-        );
-        fetchProducts();
-    };
+//     const deleteProduct = async (id) => {
+//         await axios.delete(
+//             `https://shoe-be.vercel.app/api/admin/products/${id}`,
+//             {
+//                 headers: { Authorization: `Bearer ${token}` },
+//             }
+//         );
+//         fetchProducts();
+//     };
 
-    return (
-        <div className="container my-5">
-            <h2>Admin Products</h2>
+//     return (
+//         <div className="container my-5">
+//             <h2>Admin Products</h2>
 
-            <table className="table table-bordered mt-4">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+//             <table className="table table-bordered mt-4">
+//                 <thead>
+//                     <tr>
+//                         <th>Name</th>
+//                         <th>Price</th>
+//                         <th>Stock</th>
+//                         <th>Action</th>
+//                     </tr>
+//                 </thead>
 
-                <tbody>
-                    {products.map((p) => (
-                        <tr key={p._id}>
-                            <td>{p.name}</td>
-                            <td>₦{p.price.toLocaleString()}</td>
-                            <td>{p.stock}</td>
-                            <td>
-                                <button
-                                    className="btn btn-danger btn-sm"
-                                    onClick={() => deleteProduct(p._id)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
+//                 <tbody>
+//                     {products.map((p) => (
+//                         <tr key={p._id}>
+//                             <td>{p.name}</td>
+//                             <td>₦{p.price.toLocaleString()}</td>
+//                             <td>{p.stock}</td>
+//                             <td>
+//                                 <button
+//                                     className="btn btn-danger btn-sm"
+//                                     onClick={() => deleteProduct(p._id)}
+//                                 >
+//                                     Delete
+//                                 </button>
+//                             </td>
+//                         </tr>
+//                     ))}
+//                 </tbody>
+//             </table>
+//         </div>
+//     );
+// };
 
-export default AdminProducts;
+// export default AdminProducts;
 
