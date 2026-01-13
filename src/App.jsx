@@ -86,6 +86,9 @@ import FeaturedProducts from "./components/FeaturedProducts/FeaturedProducts";
 
 import { CartProvider } from "./context/CartContext";
 import { BestSellerProvider } from "./context/BestSellerContext";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+
 
 /* ========================= */
 /* HOME CONTENT */
@@ -127,6 +130,10 @@ function App() {
             <Route path="/stores" element={<Stores />} />
             <Route path="/customer-care" element={<CustomerCare />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+
 
             <Route element={<ProtectedRoute />}>
               <Route path="/cart" element={<Cart />} />

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5000/api/auth";
 
-const LoginModal = ({ close}) => {
+const LoginModal = ({ close }) => {
     const [showShop, setShowShop] = useState(false);
     const [step, setStep] = useState("email"); // email | code
     const [email, setEmail] = useState("");
@@ -29,10 +29,10 @@ const LoginModal = ({ close}) => {
                 body: JSON.stringify({ email }),
             });
 
-            
-            
+
+
             const data = await res.json();
-         
+
             if (!res.ok) throw new Error(data.message || "Something went wrong");
 
             if (data.exists) {
@@ -99,9 +99,9 @@ const LoginModal = ({ close}) => {
                         body: JSON.stringify({ email }),
                     });
 
-                    
+
                     const data = await res.json();
-                    
+
                     if (!res.ok) throw new Error(data.message);
 
                     if (data.exists) {
@@ -297,6 +297,11 @@ const LoginModal = ({ close}) => {
 };
 
 export default LoginModal;
+
+
+
+
+
 
 
 

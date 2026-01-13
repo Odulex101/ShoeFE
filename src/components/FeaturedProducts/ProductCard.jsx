@@ -1,9 +1,14 @@
+import { Link } from "react-router-dom";
 import ProductRating from "./ProductRating";
-
 
 const ProductCard = ({ product }) => {
     return (
-        <div className="product-card">
+        // ✅ ADDED: make card clickable
+        <Link
+            to={`/product/${product.id}`}
+            className="product-card text-decoration-none text-dark"
+            style={{ cursor: "pointer" }}
+        >
             <div className="image-wrapper">
                 <span className="badge-ready">{product.badge}</span>
 
@@ -34,10 +39,11 @@ const ProductCard = ({ product }) => {
                     reviews={product.reviews}
                 />
             </div>
-        </div>
+        </Link>
     );
 };
 
 export default ProductCard;
+
 
 

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
+import { v4 as uuidv4 } from "uuid"; // Unique IDs for guest cart items
 
 const CartContext = createContext();
 
@@ -8,9 +9,17 @@ export const CartProvider = ({ children }) => {
     const { token } = useAuth();
     const [cart, setCart] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const conversionRate = 950;
+    const [checkoutAttempt, setCheckoutAttempt] = useState(false); // 🔹 Track guest checkout attempt
 
-    // FETCH CART
+    /* ================= Guest cart load ================= */
+    useEffect(() => {
+        if (!token) {
+            const storedCart = localStorage.getItem("guest_cart");
+            if (storedCart) setCart(JSON.parse(storedCart));
+        }
+    }, [token]);
+
+    /* ================= Logged-in cart load ================= */
     useEffect(() => {
         if (!token) return;
 
@@ -18,44 +27,61 @@ export const CartProvider = ({ children }) => {
             .get("http://localhost:5000/api/cart", {
                 headers: { Authorization: `Bearer ${token}` },
             })
-            .then(res => setCart(res.data.items || []))
-            .catch(err => console.error("FETCH CART ERROR:", err));
+            .then((res) => setCart(res.data.items || []))
+            .catch((err) => console.error("FETCH CART ERROR:", err));
     }, [token]);
 
-    // ADD TO CART (🔥 FIXED)
+    /* ================= Add to cart ================= */
     const addToCart = async (product) => {
-        if (!token) return;
+        let { id, name, price, images, quantity = 1, selectedSize } = product;
 
-        // ✅ GUARANTEE PRICE
-        const rawPrice =
-            product.price?.amount ??
-            product.price ??
-            product.cost;
+        if (typeof price === "string") {
+            price = Number(price.replace(/[^\d]/g, ""));
+        }
 
-        if (rawPrice == null) {
-            console.error("PRICE NOT FOUND IN PRODUCT:", product);
+        // Guest cart
+        if (!token) {
+            const updatedCart = [...cart];
+            const existing = updatedCart.find(
+                (item) => item.productId === id && item.selectedSize === selectedSize
+            );
+
+            if (existing) {
+                existing.quantity += quantity;
+            } else {
+                updatedCart.push({
+                    id: uuidv4(),
+                    productId: id,
+                    name,
+                    price,
+                    image: images?.[0],
+                    quantity,
+                    selectedSize,
+                });
+            }
+
+            setCart(updatedCart);
+            localStorage.setItem("guest_cart", JSON.stringify(updatedCart));
+            setIsCartOpen(true);
             return;
         }
 
-        const cleanPrice =
-            typeof rawPrice === "string"
-                ? Number(rawPrice.replace(/[^\d]/g, ""))
-                : Number(rawPrice);
-
+        // Logged-in cart
         try {
             const res = await axios.post(
                 "http://localhost:5000/api/cart/add",
                 {
                     product: {
-                        productId: Number(product.id),
-                        name: product.name,
-                        price: cleanPrice,
-                        image: product.images?.[0],
+                        productId: Number(id),
+                        name,
+                        price,
+                        image: images?.[0],
+                        quantity,
+                        selectedSize,
                     },
                 },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-
             setCart(res.data.items || []);
             setIsCartOpen(true);
         } catch (err) {
@@ -63,13 +89,18 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // REMOVE ITEM
-    const removeFromCart = async (productId) => {
-        if (!token) return;
+    /* ================= Remove from cart ================= */
+    const removeFromCart = async (itemId) => {
+        if (!token) {
+            const updatedCart = cart.filter((item) => item.id !== itemId);
+            setCart(updatedCart);
+            localStorage.setItem("guest_cart", JSON.stringify(updatedCart));
+            return;
+        }
 
         try {
             const res = await axios.delete(
-                `http://localhost:5000/api/cart/${productId}`,
+                `http://localhost:5000/api/cart/${itemId}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setCart(res.data.items || []);
@@ -78,14 +109,14 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // UPDATE QUANTITY
-    const updateQuantity = async (productId, quantity) => {
+    /* ================= Update quantity ================= */
+    const updateQuantity = async (itemId, quantity) => {
         if (!token || quantity < 1) return;
 
         try {
             const res = await axios.put(
                 "http://localhost:5000/api/cart/update",
-                { productId, quantity },
+                { productId: itemId, quantity },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setCart(res.data.items || []);
@@ -94,7 +125,6 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // TOTAL PRICE
     const totalPrice = cart.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
@@ -110,7 +140,8 @@ export const CartProvider = ({ children }) => {
                 isCartOpen,
                 setIsCartOpen,
                 totalPrice,
-                // conversionRate,
+                checkoutAttempt,
+                setCheckoutAttempt, // 🔹 exposed to trigger login modal
             }}
         >
             {children}
@@ -119,6 +150,16 @@ export const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => useContext(CartContext);
+
+
+
+
+
+
+
+
+
+
 
 
 
