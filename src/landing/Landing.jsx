@@ -20,8 +20,7 @@ import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 const Landing = () => {
   return (
     <div>
-      <Hero />
-      <FeaturedProducts />
+      <Header />
     </div>
   );
 };

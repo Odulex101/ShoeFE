@@ -31,6 +31,9 @@ const LoginModal = ({ close }) => {
                 body: JSON.stringify({ email }),
             });
 
+
+
+
             const data = await res.json();
             if (!res.ok) throw new Error(data.message || "Something went wrong");
 
@@ -96,6 +99,7 @@ const LoginModal = ({ close }) => {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ email }),
                     });
+
 
                     const data = await res.json();
                     if (!res.ok) throw new Error(data.message);
@@ -290,4 +294,9 @@ const LoginModal = ({ close }) => {
     );
 };
 
+
 export default LoginModal;
+
+
+
+

@@ -62,6 +62,9 @@ const AppLayout = ({ children }) => {
   );
 };
 
+/* ========================= */
+/* APP ROOT */
+/* ========================= */
 function App() {
   return (
     <AuthProvider>

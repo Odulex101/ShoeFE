@@ -69,29 +69,23 @@ const Footer = () => {
                     <div className="col-12 col-md-4 col-lg-3">
                         <h6 className="text-uppercase fw-semibold mb-3">Terms & Conditions</h6>
                         <ul className="list-unstyled footer-links footer-underline">
-                            {/* 🔴 CHANGE START */}
-                            <li onClick={() => navigate("/terms")}>
+                            <li
+                                role="button"
+                                className="cursor-pointer"
+                                onClick={() => navigate("/terms")}
+                            >
                                 Terms & Conditions
                             </li>
-
-                            <li onClick={() => navigate("/privacy")}>
+                            <li
+                                role="button"
+                                className="cursor-pointer"
+                                onClick={() => navigate("/privacy-policy")}
+                            >
                                 Privacy Policy
                             </li>
-                            {/* 🔴 CHANGE END */}
-                            <li
-                                role="button"
-                                className="cursor-pointer"
-                                onClick={() => navigate("/shipping-policy")}
-                            >
-                                Shipping Policy
-                            </li>
-                            <li
-                                role="button"
-                                className="cursor-pointer"
-                                onClick={() => navigate("/refund-policy")}
-                            >
-                                Refund Policy
-                            </li>
+                            <li>Shipping Policy</li>
+                            <li>Refund Policy</li>
+                            <li>Accessibility Statement</li>
                         </ul>
                     </div>
 
