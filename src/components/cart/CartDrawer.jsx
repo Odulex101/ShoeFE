@@ -10,8 +10,6 @@ const CartDrawer = () => {
     const { token } = useAuth();
     const [showLogin, setShowLogin] = useState(false);
 
-    const { token } = useAuth(); // 🔴 ADDED: get auth token
-
     if (!isCartOpen) return null;
 
     const handleCheckout = () => {

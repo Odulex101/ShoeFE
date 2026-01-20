@@ -19,11 +19,14 @@ import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 
 const Landing = () => {
   return (
-    <div>
-      <Header />
-    </div>
+    <>
+      <Hero />
+      <FeaturedProducts />
+    </>
   );
 };
 
 export default Landing;
+
+
 
